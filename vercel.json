@@ -1,12 +1,7 @@
 {
-  "rewrites": [
-    {
-      "source": "/discord",
-      "destination": "/api/discord"
-    },
-    {
-      "source": "/discord/interactions",
-      "destination": "/api/discord"
-    }
-  ]
+  "name": "nexus-nemesis-discord-endpoint",
+  "version": "1.0.0",
+  "dependencies": {
+    "discord-interactions": "^3.4.0"
+  }
 }
