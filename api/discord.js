@@ -1,4 +1,4 @@
-module.exports = async (req, res) => {
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Signature-Ed25519, X-Signature-Timestamp');
@@ -9,10 +9,8 @@ module.exports = async (req, res) => {
 
   if (req.method === 'GET') {
     return res.status(200).json({ 
-      message: 'Grudge Warlord Discord Bot Active',
+      message: 'Discord Interactions Endpoint Active',
       status: 'ready',
-      bot: 'Grudge Warlord #0924',
-      commands: 8,
       endpoint: '/api/discord'
     });
   }
@@ -21,47 +19,40 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  try {
-    const interaction = req.body;
+  const interaction = req.body;
 
-    if (interaction.type === 1) {
-      return res.json({ type: 1 });
-    }
+  if (interaction.type === 1) {
+    return res.json({ type: 1 });
+  }
 
-    if (interaction.type === 2) {
-      const commandName = interaction.data?.name || 'unknown';
-      
-      const responses = {
-        play: '🎮 **Starting Nexus Nemesis Game Session**\n\nInitializing your game environment with Season 0 cards.',
-        view: '👁️ **Viewing Card Collection**\n\nDisplaying your complete Season 0 card inventory.',
-        challenge: '⚔️ **Battle Arena Challenge**\n\nPreparing 20-card deck for competitive battle.',
-        auction: '🏪 **Marketplace Access**\n\nOpening SOL-based card trading marketplace.',
-        rank: '🏆 **Player Rankings**\n\nDisplaying current leaderboards and statistics.',
-        bid: '💰 **Auction Bidding**\n\nAccessing live card auction system.',
-        info: 'ℹ️ **Nexus Nemesis Information**\n\nWeb3 Trading Card Game by Grudge Studio with 100 Season 0 cards.',
-        launch: '🚀 **Discord Activity Launch**\n\nStarting embedded game experience.'
-      };
+  if (interaction.type === 2) {
+    const commandName = interaction.data?.name || 'unknown';
+    
+    const responses = {
+      stats: '🎮 **Nexus Nemesis Player Stats**\n\nAccess your complete player statistics and game data.',
+      cards: '🃏 **Nexus Nemesis Card Collection**\n\nView and manage your Season 0 cards in your collection.',
+      battle: '⚔️ **Nexus Nemesis Battle Arena**\n\nEnter the battlefield and compete with other players.',
+      packs: '📦 **Nexus Nemesis Card Packs**\n\nOpen card packs and expand your collection.',
+      marketplace: '🏪 **Nexus Nemesis Marketplace**\n\nTrade cards with other players.',
+      wallet: '💰 **Nexus Nemesis Wallet**\n\nCheck your GBUX balance and transaction history.'
+    };
 
-      const content = responses[commandName] || '🎮 **Grudge Warlord Bot Active**\n\nUse /play, /view, /challenge, /auction, /rank, /bid, /info, or /launch commands.';
-
-      return res.json({
-        type: 4,
-        data: {
-          content,
-          flags: 64
-        }
-      });
-    }
+    const content = responses[commandName] || '🎮 **Welcome to Nexus Nemesis!**\n\nUse slash commands to interact with the game.';
 
     return res.json({
       type: 4,
       data: {
-        content: '🎮 Nexus Nemesis interaction processed!',
+        content,
         flags: 64
       }
     });
-  } catch (error) {
-    console.error('Discord interaction error:', error);
-    return res.status(500).json({ error: 'Internal server error' });
   }
-};
+
+  return res.json({
+    type: 4,
+    data: {
+      content: '🎮 Nexus Nemesis interaction processed successfully!',
+      flags: 64
+    }
+  });
+}
