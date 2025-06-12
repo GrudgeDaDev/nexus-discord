@@ -1,3 +1,5 @@
+### Bot Information
+- **Application ID**: 1342593452793270302
 ## Discord Application Details
 - **Application ID**: 1342593452793270302
 - **Bot Name**: Grudge Warlord
