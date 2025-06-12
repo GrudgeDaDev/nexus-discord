@@ -1,0 +1,17 @@
+{
+  "functions": {
+    "api/discord-interactions.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/discord",
+      "dest": "/api/discord-interactions"
+    },
+    {
+      "src": "/discord/interactions",
+      "dest": "/api/discord-interactions"
+    }
+  ]
+}
