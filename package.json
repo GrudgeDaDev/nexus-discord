@@ -1,7 +1,20 @@
 {
   "name": "nexus-nemesis-discord-endpoint",
   "version": "1.0.0",
+  "description": "Discord interactions endpoint for Nexus Nemesis",
+  "main": "api/index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required'",
+    "start": "node api/index.js"
+  },
   "dependencies": {
     "discord-interactions": "^3.4.0"
-  }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["discord", "bot", "nexus-nemesis"],
+  "author": "Grudge Studio",
+  "license": "MIT"
 }
