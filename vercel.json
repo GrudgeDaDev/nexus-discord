@@ -1,18 +1,12 @@
 {
-  "version": 2,
-  "functions": {
-    "api/discord-interactions.js": {
-      "runtime": "@vercel/node@3.0.0"
-    }
-  },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/discord",
-      "dest": "/api/discord-interactions"
+      "source": "/discord",
+      "destination": "/api/discord"
     },
     {
-      "src": "/discord/interactions", 
-      "dest": "/api/discord-interactions"
+      "source": "/discord/interactions",
+      "destination": "/api/discord"
     }
   ]
 }
